@@ -108,7 +108,7 @@ describe('recipe routes', () => {
     return request(app)
       .get(`/api/v1/recipes/${recipe._id}`)
       .then(res => {
-        expect(res.body).toEqual({
+        expect(res.body).toMatchObject({
           _id: expect.any(String),
           name: 'cookies',
           ingredients: [
@@ -131,6 +131,7 @@ describe('recipe routes', () => {
       .patch(`/api/v1/recipes/${recipe._id}`)
       .send({ name: 'good cookies' })
       .then(res => {
+        //console.log(res.body.events);
         expect(res.body).toEqual({
           _id: expect.any(String),
           name: 'good cookies',
